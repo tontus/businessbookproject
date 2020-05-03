@@ -25,7 +25,7 @@ SECRET_KEY = '__mjzwl^t$&czf_v+mchp^gw7fig9v8x!$6z_taitg$8$_roqd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','localhost','profiteebd.com','www.profiteebd.com','3.130.72.33']
 
 
 # Application definition
@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'businessbook',
         'HOST':'127.0.0.1',
-        'USER':'shakibulislam',
+        'USER':'shakil',
         'PASSWORD':'Shakil121'
     }
 }

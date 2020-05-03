@@ -29,7 +29,7 @@ def signup(request):
 			confirm_password = form.cleaned_data['confirm_password']
 
 			response=request.POST['g-recaptcha-response']
-			secret_key='6Lewpu0UAAAAABkPKzBhc2Jy_qXJY1HKxJL7pfLP'
+			secret_key='6LdVsPEUAAAAABucQvaYu3TSb20v1ynbq8gJUokK'
 
 			sending_request=requests.post('https://www.google.com/recaptcha/api/siteverify',data={'response':response,'secret':secret_key})
 			status=json.loads(sending_request.text)['success']
