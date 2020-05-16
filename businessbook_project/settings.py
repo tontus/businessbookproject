@@ -25,7 +25,7 @@ SECRET_KEY = '__mjzwl^t$&czf_v+mchp^gw7fig9v8x!$6z_taitg$8$_roqd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost','profiteebd.com','www.profiteebd.com','3.130.72.33']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','profiteebd.com','www.profiteebd.com','3.130.72.33','www.businessbook.ltd','businessbook.ltd']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
+    'dashboard.apps.DashboardConfig',
     #external apps area
     'phonenumber_field',
     'django_countries',

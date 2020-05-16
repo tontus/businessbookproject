@@ -131,8 +131,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['first_name','last_name','mobile','address','country']
 
     class Meta:
-        verbose_name = _('site_users')
-        verbose_name_plural = _('site_users')
+        verbose_name = _('users')
+        verbose_name_plural = _('users')
         swappable = 'AUTH_USER_MODEL'
 
 

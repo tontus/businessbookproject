@@ -7,7 +7,7 @@ from .models import User
 import requests
 import json
 from django.contrib import auth
-
+from dashboard.models import *
 
 def signup(request):
 	if request.method=='GET':
@@ -48,7 +48,7 @@ def signup(request):
 				return render(request,'accounts/signup.html',{'form':form,'userexist':'true'})
 			except User.DoesNotExist:
 				create_user=User.objects.create_user(password=password,first_name=first_name,last_name=last_name,email=email,mobile=mobile,address=address,country=country,company=company)
-				#send_mail('sub','content','admin@webheavenit.com',[email])
+				balance.objects.create(user=create_user)
 				sendConfirm(create_user)
 				return render(request,'accounts/activation.html')
 

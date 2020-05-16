@@ -24,7 +24,7 @@ from . import views
 urlpatterns = [
 	path('',TemplateView.as_view(template_name='index.html'),name='index'),
     path('admin/', admin.site.urls),
-    path('dashboard/',views.dashboard,name='dashboard'),
+    path('dashboard/',include('dashboard.urls')),
     path('accounts/',include('accounts.urls')),
     path('email/', include(mail_urls)),
 ]
