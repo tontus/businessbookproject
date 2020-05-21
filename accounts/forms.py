@@ -15,8 +15,8 @@ class user_account_form(forms.Form):
     email = forms.EmailField(max_length=35, required=True,widget=forms.TextInput(attrs={'class':'form-control','id':'emailAddress','placeholder':'Email'}))
     mobile=PhoneNumberField(max_length=16,required=True, widget=forms.TextInput(attrs={'class':'form-control','id':'mobile','placeholder':'Mobile'}))
     address=forms.CharField(max_length=45, required=True,widget=forms.TextInput(attrs={'class':'form-control','id':'address','placeholder':'Address'}))
-    country =forms.ChoiceField(label="Select your country",choices=COUNTRIES,required=True,widget=forms.Select(attrs={'class':'form-control','id':'country'}))
+    country =forms.ChoiceField(label="Select your country",choices=COUNTRIES,required=True,widget=forms.Select(attrs={'class':'form-control country','id':None}))
     
-    company=forms.CharField(max_length=50,required=False)
+    company=forms.CharField(max_length=50,required=False,widget=forms.TextInput(attrs={'class':'form-control','id':'company','placeholder':'Company'}))
     password=forms.CharField(max_length=15,widget=forms.PasswordInput(attrs={'class':'form-control','id':'password1','placeholder':'Password'}), required=True)
     confirm_password=forms.CharField(max_length=15,widget=forms.PasswordInput(attrs={'class':'form-control','id':'password2','placeholder':'Confirm Password'}), required=True)

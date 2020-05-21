@@ -27,6 +27,10 @@ urlpatterns = [
     path('dashboard/',include('dashboard.urls')),
     path('accounts/',include('accounts.urls')),
     path('email/', include(mail_urls)),
+    path('about-us/',TemplateView.as_view(template_name='about-us.html'),name='about-us'),
+    path('support/',TemplateView.as_view(template_name='support.html'),name='support'),
+    path('safety/',TemplateView.as_view(template_name='safety.html'),name='safety'),
+    path('agent/',TemplateView.as_view(template_name='agent.html'),name='agent'),
 ]
 
 
