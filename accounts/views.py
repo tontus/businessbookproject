@@ -11,10 +11,27 @@ from dashboard.models import *
 
 def signup(request):
 	if request.method=='GET':
+		referid=''
+		try:
+			referid=request.GET['ref']
+		except:
+			referid = ''
 		form=user_account_form()
-		return render(request,'accounts/signup.html',{'form':form})
+		return render(request,'accounts/signup.html',{'form':form,'referer':referid})
 
 	if request.method=='POST':
+		referer_id=0
+		try:
+
+			if request.POST['referer_id'] == '':
+				referer_id=0
+
+			else:
+				referer_id=request.POST['referer_id']
+
+
+		except:
+			referer_id=0
 		form=user_account_form(request.POST)
 
 		if form.is_valid():
@@ -49,6 +66,7 @@ def signup(request):
 			except User.DoesNotExist:
 				create_user=User.objects.create_user(password=password,first_name=first_name,last_name=last_name,email=email,mobile=mobile,address=address,country=country,company=company)
 				balance.objects.create(user=create_user)
+				refer.objects.create(user=create_user,referer=referer_id)
 				sendConfirm(create_user)
 				return render(request,'accounts/activation.html')
 

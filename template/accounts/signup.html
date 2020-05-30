@@ -15,8 +15,9 @@
                 <p id="sln" class="nahidr" onclick="myFunction()">Personal</p>
                 <p id="sln2" onclick="myFunction2()">Business</p>
             </div>
-            <!--- Personal Account ---->
 
+            <!--- Personal Account ---->
+            
             <div id="nahid">
                 <h3 class="font-weight-400 text-center">Sign Up <small>(Personal)</small></h3>
                 <p class="lead text-center">Your Sign Up information is safe with us.</p>
@@ -29,8 +30,10 @@
                 <div class="bg-light shadow-md rounded p-4 mx-2">
                     
                     <form id="signupForm" method="post" action="">
-                        {% csrf_token %}
 
+                        <input type="hidden" name="referer_id" value="{{referer}}">
+                         {% csrf_token %}
+                        <input type="hidden" name="referer_id" value="{{referer}}">
                         <div class="form-group">
                            {{ form.first_name }}
                          <div class="validationmessage">  {{form.first_name.errors}} </div>
@@ -92,18 +95,21 @@
                     </form>
                     <p class="text-3 text-muted text-center mb-0">Already have an account? <a class="btn-link" href="{% url 'login' %}">Log In</a></p>
                 </div>
-            </div>
+            </div> 
             <!--- Personal Account ---->
+
+
+
 
             <!--- Business Account ---->
 
-
+    
             
             <div id="tania" style="display:none">
                 <h3 class="font-weight-400 text-center">Sign Up <small>(Business)</small></h3>
                 <p class="lead text-center">Your Sign Up information is safe with us.</p>
 
-               
+            
                 
                  
                 
@@ -111,6 +117,9 @@
                 <div class="bg-light shadow-md rounded p-4 mx-2">
                     
                     <form id="signupForm" method="post" action="">
+
+                        
+                        <input type="hidden" name="referer_id" value="{{referer}}">
                         {% csrf_token %}
                         
 
@@ -180,7 +189,7 @@
                     </form>
                     <p class="text-3 text-muted text-center mb-0">Already have an account? <a class="btn-link" href="{% url 'login' %}">Log In</a></p>
                 </div>
-            </div>
+            </div> 
 
 
 
