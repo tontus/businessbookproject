@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.http import HttpRequest
 from django.contrib import messages
 from datetime import datetime, timedelta
-from django.db.models import Q
+from django.db.models import Q,Avg,Sum
 from . import models
 import random
 from .models import *
@@ -156,20 +156,35 @@ def buy_adpack(request,level):
 		for i in range(0,int(level)):
 			recent_bought.append(i)
 
-		check=bought_adpack.objects.filter(Q(user=request.user) & Q(expiration_date__gt=datetime.now()) & Q(bought_adpacks__level=int(recent_bought[-1])))
+		try:
 
-		check_max=bought_adpack.objects.filter(Q(user=request.user) & Q(expiration_date__gt=datetime.now()) & Q(bought_adpacks__level=int(level)))
+			prev_max_buy =  adpack.objects.get(level=int(recent_bought[-1])).max_buy
 
+		except adpack.DoesNotExist:
+			prev_max_buy=0
+
+		check=bought_adpack.objects.filter(Q(user=request.user) & Q(expiration_date__gt=datetime.now()) & Q(bought_adpacks__level=int(recent_bought[-1]))).aggregate(s=Sum('total_quantity'))['s']
+		if check == None :
+			check=0
+
+		check_max=bought_adpack.objects.filter(Q(user=request.user) & Q(expiration_date__gt=datetime.now()) & Q(bought_adpacks__level=int(level))).aggregate(s=Sum('total_quantity'))['s']
+
+		if check_max == None :
+			check_max = 0
+
+		print('remaining= ',(max_buy-(check_max)))
+		print('current active this package= ',(check_max))
 		if bal<total_price:							
 			messages.info(request,'insufficient fund')
 			return redirect('buy_adpack',int(level))
 
-		elif len(check)<max_buy and int(level)!=1 :
+		elif check<prev_max_buy and int(level)!=1 :
 			messages.warning(request,'you can not buy before buying(max) previous level adpack')
 			return redirect('buy_adpack',int(level))
 
-		elif (max_buy-len(check_max))<quantity:
-			messages.error(request,'you are allowed to buy only '+(max_buy-len(check_max))+' more adpacks with this package')
+		elif (max_buy-(check_max))<quantity:
+			string='you are allowed to buy only '+str((max_buy-(check_max)))+' more adpacks with this package'
+			messages.error(request,string)
 			return redirect('buy_adpack',int(level))
 
 
