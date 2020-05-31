@@ -28,12 +28,16 @@
                 
                     
                 <div class="bg-light shadow-md rounded p-4 mx-2">
+                    {% if referinvalid %}
+                    <div class="alert alert-danger">{{referinvalid}}</div>
+
+                    {% endif %}
                     
                     <form id="signupForm" method="post" action="">
 
                         <input type="hidden" name="referer_id" value="{{referer}}">
                          {% csrf_token %}
-                        <input type="hidden" name="referer_id" value="{{referer}}">
+                      
                         <div class="form-group">
                            {{ form.first_name }}
                          <div class="validationmessage">  {{form.first_name.errors}} </div>

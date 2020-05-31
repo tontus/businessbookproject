@@ -106,6 +106,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     country = CountryField(blank=False,null=False,blank_label='(select country)')
 
     company=models.CharField(_('company'),max_length=50,blank=True,null=True)
+    is_agent=models.BooleanField(_('is_agent'),default=False)
+    agent_id=models.IntegerField(default=0)
     
     
     

@@ -8,6 +8,7 @@ import requests
 import json
 from django.contrib import auth
 from dashboard.models import *
+from django.http import HttpResponse
 
 def signup(request):
 	if request.method=='GET':
@@ -21,20 +22,24 @@ def signup(request):
 
 	if request.method=='POST':
 		referer_id=0
-		try:
+		is_agent=False
+		print('your referer is ',request.POST.get('referer_id'))
+		
+		
+		form=user_account_form(request.POST)
 
-			if request.POST['referer_id'] == '':
+		
+
+		if form.is_valid():
+			if request.POST.get('referer_id') == '' and form.cleaned_data['company'] ==  '':
+				return render(request,'accounts/signup.html',{'form':form,'referinvalid':'you must have a referer to create account'})
+			elif request.POST.get('referer_id') == '' and form.cleaned_data['company'] !=  '':
 				referer_id=0
+				is_agent=True
+
 
 			else:
 				referer_id=request.POST['referer_id']
-
-
-		except:
-			referer_id=0
-		form=user_account_form(request.POST)
-
-		if form.is_valid():
 			first_name	=	form.cleaned_data['first_name']
 			last_name	=	form.cleaned_data['last_name']
 			email 		=	form.cleaned_data['email']
@@ -64,7 +69,7 @@ def signup(request):
 				User.objects.get(email=email)
 				return render(request,'accounts/signup.html',{'form':form,'userexist':'true'})
 			except User.DoesNotExist:
-				create_user=User.objects.create_user(password=password,first_name=first_name,last_name=last_name,email=email,mobile=mobile,address=address,country=country,company=company)
+				create_user=User.objects.create_user(password=password,first_name=first_name,last_name=last_name,email=email,mobile=mobile,address=address,country=country,company=company,is_agent=is_agent)
 				balance.objects.create(user=create_user)
 				refer.objects.create(user=create_user,referer=referer_id)
 				sendConfirm(create_user)
@@ -97,8 +102,11 @@ def login(request):
 		password=request.POST['loginPassword']
 		remember=''
 
+
+
 		
 		authen=auth.authenticate(request,email=email,password=password)
+
 		try:
 			r=request.POST['remember']
 			if r=='yes':
@@ -108,6 +116,10 @@ def login(request):
 				
 
 		if authen is not None:
+			select_user=User.objects.get(email=email)
+			if select_user.is_agent == True and select_user.agent_id == 0:
+				return HttpResponse('<h1 style="color:red">your agent account is under review.please wait upto 12 hour and try again</h1>')
+
 
 			auth.login(request,authen)
 
