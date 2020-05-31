@@ -54,3 +54,13 @@ class bought_adpack(models.Model):
 
 
 
+class adpack_update(models.Model):
+	date=models.DateField(default=datetime.now())
+	bought_adpack_name=models.ForeignKey(bought_adpack,on_delete=models.CASCADE)
+	today_revenue=models.FloatField()
+
+	def __str__(self):
+		return str(self.bought_adpack_name)
+
+
+

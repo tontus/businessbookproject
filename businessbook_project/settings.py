@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'django_countries',
     'django_email_verification',
+    'django_crontab',
 
     #end of external apps area
 ]
@@ -187,3 +188,6 @@ DEFAULT_FROM_EMAIL= 'admin@webheavenit.com'
 '''
 
 
+CRONJOBS = [
+    ('59 23 * * *', 'dashboard.cron.adpack_daily_update')
+]
