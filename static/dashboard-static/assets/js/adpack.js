@@ -18,7 +18,7 @@ $('#quantity').keyup(function(){
 
 $(document).on('click','#buybutton',function(event){
 	var quantity = $('#quantity').val();
-	if(quantity == '' || quantity>200){
+	if(quantity == '' || quantity>200 ||quantity<0){
 		alert('quantity is not valid');
 		event.preventDefault();
 	};

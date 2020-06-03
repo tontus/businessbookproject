@@ -9,6 +9,7 @@
     <!-- Content -->
     <style>
     </style>
+
     <div id="content">
         <div class="login-signup-page mx-auto my-5">
             <div class="nrt">
@@ -36,6 +37,7 @@
                     <form id="signupForm" method="post" action="">
 
                         <input type="hidden" name="referer_id" value="{{referer}}">
+                        <input type="hidden" name="agent_id" value="0">
                          {% csrf_token %}
                       
                         <div class="form-group">
@@ -124,6 +126,7 @@
 
                         
                         <input type="hidden" name="referer_id" value="{{referer}}">
+
                         {% csrf_token %}
                         
 
@@ -179,6 +182,10 @@
                             {{form.confirm_password}}
                             <div class="validationmessage">{{form.confirm_password.errors}}</div>
                         </div>
+                        <div class="form-control">
+                            <input type="number" id="agent_number" name="agent_id" class="form-control" placeholder="enter your agent id">
+
+                        </div>
                         <div class="form-group">
                             <div class="g-recaptcha" data-sitekey="6LdVsPEUAAAAAEH7x7ev1c_bbmPv8OUqCxcCjjVH"></div>
                             {% if captcha %}
@@ -189,7 +196,7 @@
                             {% endif %}
 
                         </div>
-                        <button class="btn btn-primary btn-block my-4" type="submit">Sign Up</button>
+                        <button class="btn btn-primary btn-block my-4" id="business_submit" type="submit">Sign Up</button>
                     </form>
                     <p class="text-3 text-muted text-center mb-0">Already have an account? <a class="btn-link" href="{% url 'login' %}">Log In</a></p>
                 </div>

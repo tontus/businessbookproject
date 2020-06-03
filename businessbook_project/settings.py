@@ -142,21 +142,11 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'staticfiles')]
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
-'''
-EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.zoho.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = '<admin@webheavenit.com>'
-EMAIL_HOST_PASSWORD = '<cV1PYSn7yc7v>'
-DEFAULT_FROM_EMAIL= '<admin@webheavenit.com>'
+
+
+
 
 '''
-
-
-
-
-
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
@@ -176,16 +166,29 @@ EMAIL_MODEL_ADMIN = False # the default value is False
 DEFAULT_FROM_EMAIL= 'shakil4cash@gmail.com'
 
 '''
+
+
+
+
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.zoho.com'
+EMAIL_USE_TLS = True
+
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'support@businessbook.ltd'
+EMAIL_HOST_PASSWORD = 'zgfmPWvSN88w'
+
 EMAIL_SERVER = 'smtp.zoho.com'
-EMAIL_ADDRESS = 'admin@webheavenit.com'
-EMAIL_PASSWORD = 'cV1PYSn7yc7v'
+EMAIL_ADDRESS = 'support@businessbook.ltd'
+EMAIL_PASSWORD = 'zgfmPWvSN88w'
 EMAIL_MAIL_SUBJECT = 'Confirm your email'
-EMAIL_MAIL_HTML = 'accounts/email.html'
+EMAIL_MAIL_HTML = 'accounts/email-confirmation-mail.html'
 EMAIL_PAGE_TEMPLATE = 'accounts/activation-conf.html'
-EMAIL_PAGE_DOMAIN = '127.0.0.1'
+EMAIL_PAGE_DOMAIN = '127.0.0.1:8000'
 EMAIL_MODEL_ADMIN = False # the default value is False
-DEFAULT_FROM_EMAIL= 'admin@webheavenit.com'
-'''
+DEFAULT_FROM_EMAIL= 'support@businessbook.ltd'
+
+
 
 
 CRONJOBS = [

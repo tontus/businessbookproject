@@ -23,6 +23,7 @@ def signup(request):
 	if request.method=='POST':
 		referer_id=0
 		is_agent=False
+		agent_id=0
 		print('your referer is ',request.POST.get('referer_id'))
 		
 		
@@ -35,7 +36,8 @@ def signup(request):
 				return render(request,'accounts/signup.html',{'form':form,'referinvalid':'you must have a referer to create account'})
 			elif request.POST.get('referer_id') == '' and form.cleaned_data['company'] !=  '':
 				referer_id=0
-				is_agent=True
+				is_agent=False
+				agent_id=int(request.POST.get('agent_id'))
 
 
 			else:
@@ -69,7 +71,7 @@ def signup(request):
 				User.objects.get(email=email)
 				return render(request,'accounts/signup.html',{'form':form,'userexist':'true'})
 			except User.DoesNotExist:
-				create_user=User.objects.create_user(password=password,first_name=first_name,last_name=last_name,email=email,mobile=mobile,address=address,country=country,company=company,is_agent=is_agent)
+				create_user=User.objects.create_user(password=password,first_name=first_name,last_name=last_name,email=email,mobile=mobile,address=address,country=country,company=company,is_agent=is_agent,agent_id=agent_id)
 				balance.objects.create(user=create_user)
 				refer.objects.create(user=create_user,referer=referer_id)
 				sendConfirm(create_user)
@@ -117,7 +119,7 @@ def login(request):
 
 		if authen is not None:
 			select_user=User.objects.get(email=email)
-			if select_user.is_agent == True and select_user.agent_id == 0:
+			if select_user.is_agent == False and select_user.agent_id  > 0:
 				return HttpResponse('<h1 style="color:red">your agent account is under review.please wait upto 12 hour and try again</h1>')
 
 

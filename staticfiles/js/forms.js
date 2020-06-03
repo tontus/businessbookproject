@@ -14,6 +14,21 @@ $(document).ready(function(){
 	$('#id_new_password1').attr({class:'form-control',placeholder:'Enter new password'});
 	$('#id_new_password2').attr({class:'form-control',placeholder:'Confirm new password'});
 
+	$(document).on('click','#business_submit',function(event){
+
+
+		var agent_id = $('#agent_number').val();
+        if(agent_id == ''){alert('agent id can not be blank');
+
+	
+		event.preventDefault();
+	};
+
+});//
+
+
+
+
 
 });
 
