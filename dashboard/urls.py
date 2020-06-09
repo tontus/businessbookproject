@@ -15,6 +15,17 @@ urlpatterns = [
 	path('adpack_list/',views.adpack_list,name='adpack_list'),
 	path('refer/',views.refer_page,name='refer'),
 	path('buy_adpack/<int:level>/',views.buy_adpack,name='buy_adpack'),
+	path('refer_list/',views.refer_list,name='refer_list'),
+	path('revenue_history/',views.revenue_history,name='revenue_history'),
+	path('adpack_history/',views.adpack_history,name='adpack_history'),
+	path('personal_info/<int:pk>/',views.personal_info.as_view(),name='personal_info_update'),
+	path('payment_info/',views.payment_info,name='payment_info'),
+	path('pm_add/',views.pm_add,name='pm_add'),
+	path('agent_account_add/',views.agent_account_add,name='agent_account_add'),
+	path('bank_info_add/',views.bank_info_add,name='bank_info_add'),
+	path('withdraw/',views.withdraw,name='withdraw'),
+	path('withdraw_request/',views.withdraw_request,name='withdraw_request'),
+	path('change_password/',views.change_password,name='change_password'),
 
 	]
     

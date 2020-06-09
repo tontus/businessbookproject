@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
     'dashboard.apps.DashboardConfig',
+    'payments_information.apps.PaymentsInformationConfig',
     #external apps area
     'phonenumber_field',
     'django_countries',
@@ -146,7 +147,7 @@ MEDIA_URL = '/media/'
 
 
 
-'''
+
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
@@ -165,10 +166,10 @@ EMAIL_PAGE_DOMAIN = '127.0.0.1:8000'
 EMAIL_MODEL_ADMIN = False # the default value is False
 DEFAULT_FROM_EMAIL= 'shakil4cash@gmail.com'
 
+
+
+
 '''
-
-
-
 
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.zoho.com'
@@ -188,7 +189,7 @@ EMAIL_PAGE_DOMAIN = '127.0.0.1:8000'
 EMAIL_MODEL_ADMIN = False # the default value is False
 DEFAULT_FROM_EMAIL= 'support@businessbook.ltd'
 
-
+'''
 
 
 CRONJOBS = [

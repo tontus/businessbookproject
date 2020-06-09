@@ -145,32 +145,14 @@
                                         <span class="pcoded-mtext">Dashboard</span>
                                     </a>
                                     <ul class="pcoded-submenu">
-                                        <li class="">
-                                            <a href="#">
-                                                <span class="pcoded-mtext">Balance</span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="#">
-                                                <span class="pcoded-mtext">Profit</span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="#">
-                                                <span class="pcoded-mtext">Active adpack</span>
-                                            </a>
-                                        </li>
+                                       
                                        <!-- <li class="">
                                             <a href="#">
                                                 <span class="pcoded-mtext">Adpack</span>
                                                 <span class="pcoded-badge label label-info ">NEW</span>
                                             </a>
                                         </li> -->
-                                        <li class="">
-                                            <a href="#">
-                                                <span class="pcoded-mtext">Total Refer</span>
-                                            </a>
-                                        </li>
+                                      
                                     </ul>
                                 </li>
                                 <li class="pcoded-hasmenu ">
@@ -180,25 +162,25 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class="">
-                                            <a href="#">
+                                            <a href="{% url 'personal_info_update' request.user.id %}">
                                                 <span class="pcoded-mtext">Personal Information</span>
                                             </a>
                                         </li>
-                                        <li class="">
+                                        <!--<li class="">
                                             <a href="#">
                                                 <span class="pcoded-mtext">Verification</span>
                                             </a>
-                                        </li>
+                                        </li> -->
                                         <li class="">
-                                            <a href="#">
-                                                <span class="pcoded-mtext">Bank Information</span>
+                                            <a href="{% url 'payment_info' %}">
+                                                <span class="pcoded-mtext">Payment Information</span>
                                             </a>
                                         </li>
-                                        <li class="">
+                                      <!--  <li class="">
                                             <a href="#">
                                                 <span class="pcoded-mtext">User Card</span>
                                             </a>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </li>
                                 <li class="pcoded-hasmenu ">
@@ -217,7 +199,7 @@
                                                 <span class="pcoded-mtext">Blance Transfer</span>
                                             </a>
                                         </li>
-                                        <li class="">
+                                      <!--  <li class="">
                                             <a href="#">
                                                 <span class="pcoded-mtext">Make Payment</span>
                                             </a>
@@ -226,25 +208,26 @@
                                             <a href="#">
                                                 <span class="pcoded-mtext">Payment Invoice</span>
                                             </a>
-                                        </li>
+                                        </li>-->
                                         <li class="">
-                                            <a href="#">
+                                            <a href="{% url 'withdraw' %}"> 
                                                 <span class="pcoded-mtext">Withdraw</span>
                                             </a>
                                         </li>
-                                        <li class="">
+                                        <!--<li class="">
                                             <a href="#">
                                                 <span class="pcoded-mtext">E-Voucher</span>
                                             </a>
-                                        </li>
-                                        <li class="">
+                                        </li> -->
+                                        <!--<li class="">
                                             <a href="#">
                                                 <span class="pcoded-mtext">Gift Card</span>
                                             </a>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </li>
                             </ul>
+                            {% if request.user.agent_id > 0 %}
                             <div class="pcoded-navigatio-lavel">Affiliate Sector</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="pcoded-hasmenu">
@@ -255,15 +238,16 @@
                                     <ul class="pcoded-submenu">
                                         <li class=" ">
                                             <a href="{% url 'refer' %}">
-                                                <span class="pcoded-mtext">Referal earning</span>
+                                                <span class="pcoded-mtext">Referal link</span>
+                                            </a>
+                                        </li>
+                                        
+                                        <li class=" ">
+                                            <a href="{% url 'refer_list' %}">
+                                                <span class="pcoded-mtext">Referal List</span>
                                             </a>
                                         </li>
                                         <!--
-                                        <li class=" ">
-                                            <a href="#">
-                                                <span class="pcoded-mtext">Refer List</span>
-                                            </a>
-                                        </li>
                                         <li class=" ">
                                             <a href="#">
                                                 <span class="pcoded-mtext">Refer Earn</span>
@@ -272,7 +256,8 @@
                                     </ul>
                                 </li>
                             </ul>
-                            <div class="pcoded-navigatio-lavel">Profite Sector</div>
+                            {% endif %}
+                            <div class="pcoded-navigatio-lavel">Profit Sector</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
@@ -286,12 +271,12 @@
                                             </a>
                                         </li>
                                         <li class=" ">
-                                            <a href="#">
+                                            <a href="{% url 'adpack_history' %}">
                                                 <span class="pcoded-mtext">Adpack History</span>
                                             </a>
                                         </li>
                                         <li class=" ">
-                                            <a href="#">
+                                            <a href="{% url 'revenue_history' %}">
                                                 <span class="pcoded-mtext">Revenue History</span>
                                             </a>
                                         </li>
@@ -360,8 +345,8 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class=" ">
-                                            <a href="#">
-                                                <span class="pcoded-mtext">Password</span>
+                                            <a href="{% url 'change_password' %}">
+                                                <span class="pcoded-mtext">Change password</span>
                                             </a>
                                         </li>
                                         <li class=" ">

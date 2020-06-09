@@ -50,7 +50,7 @@ class bought_adpack(models.Model):
 
 
 	def __str__(self):
-		return str(self.bought_adpack)
+		return str(self.bought_adpacks.title)
 
 
 
@@ -61,6 +61,72 @@ class adpack_update(models.Model):
 
 	def __str__(self):
 		return str(self.bought_adpack_name)
+
+
+class pm_accounts(models.Model):
+	user=models.OneToOneField(User,on_delete=models.CASCADE)
+	pm_account = models.CharField(max_length=25,blank=True,null=True)
+
+
+	def __str__(self):
+		return self.user.email
+
+	class Meta:
+		verbose_name='user perfectMoney accounts'
+		verbose_name_plural='user perfectMoney accounts'
+
+class agent_accounts(models.Model):
+	user = models.OneToOneField(User,on_delete=models.CASCADE)
+	agent_email = models.EmailField(max_length=25)
+
+	def __str__(self):
+		return self.user.email
+
+	class Meta:
+		verbose_name='user agent accounts'
+		verbose_name_plural='user agent accounts'
+
+class bank_accounts(models.Model):
+	user=models.OneToOneField(User,on_delete=models.CASCADE)
+	account_type=models.CharField(max_length=30,null=True,blank=True)
+	account_number=models.CharField(max_length=60,null=True,blank=True)
+	account_holder_name=models.CharField(max_length=40,blank=True,null=True)
+	bank_name = models.CharField(max_length=40,blank=True,null=True)
+	branch_name=models.CharField(max_length=30,blank=True,null=True)
+	ifsc_code = models.CharField(max_length=40,blank=True,null=True)
+	description = models.CharField(max_length=100,blank=True,null=True)
+
+
+
+
+	def __str__(self):
+		return self.user.email
+
+	class Meta:
+		verbose_name='user bank accounts'
+		verbose_name_plural='user bank accounts'
+
+
+
+
+class withdraw_requests(models.Model):
+	date=models.DateField(default=datetime.now())
+	user=models.ForeignKey(User,on_delete=models.CASCADE)
+	method=models.CharField(max_length=40)
+	amount=models.FloatField()
+	payment_done=models.BooleanField(default=False)
+
+	def __str__(self):
+		return str(self.user.email)
+
+	class Meta:
+		verbose_name='user withdraw requests'
+		verbose_name_plural='user withdraw requests'
+
+
+
+
+
 
 
 
