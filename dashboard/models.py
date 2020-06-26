@@ -39,7 +39,7 @@ class adpack(models.Model):
 
 class bought_adpack(models.Model):
 	user=models.ForeignKey(User,on_delete=models.CASCADE)
-	buying_date=models.DateField(default=datetime.now())
+	buying_date=models.DateField(null=False,default=timezone.now)
 	expiration_date=models.DateField()
 	total_quantity=models.IntegerField()
 	bought_adpacks=models.ForeignKey(adpack,on_delete=models.CASCADE)
@@ -55,7 +55,7 @@ class bought_adpack(models.Model):
 
 
 class adpack_update(models.Model):
-	date=models.DateField(default=datetime.now())
+	date=models.DateField(default=timezone.now)
 	bought_adpack_name=models.ForeignKey(bought_adpack,on_delete=models.CASCADE)
 	today_revenue=models.FloatField()
 
@@ -110,11 +110,12 @@ class bank_accounts(models.Model):
 
 
 class withdraw_requests(models.Model):
-	date=models.DateField(default=datetime.now())
+	date=models.DateField(default=timezone.now)
 	user=models.ForeignKey(User,on_delete=models.CASCADE)
 	method=models.CharField(max_length=40)
 	amount=models.FloatField()
 	payment_done=models.BooleanField(default=False)
+	payment_error=models.BooleanField(default=False)
 
 	def __str__(self):
 		return str(self.user.email)
@@ -122,6 +123,22 @@ class withdraw_requests(models.Model):
 	class Meta:
 		verbose_name='user withdraw requests'
 		verbose_name_plural='user withdraw requests'
+
+
+
+class deposit_history(models.Model):
+	date=models.DateField(default=timezone.now)
+	user=models.ForeignKey(User,on_delete=models.CASCADE)
+	method=models.CharField(max_length=40,default='parfectmoney')
+	amount=models.FloatField()
+	
+
+	def __str__(self):
+		return str(self.user.email)
+
+	class Meta:
+		verbose_name='user deposit history'
+		verbose_name_plural='user deposit history'
 
 
 

@@ -100,6 +100,7 @@ def payment_status(request):
 			curr_bal=float(bal.current_balance)
 			bal.current_balance=(curr_bal+amount)
 			bal.save()
+			deposit_history.objects.create(user=request.user,amount=amount)
 			return HttpResponse('success')
 		else:
 			return HttpResponse('failed payment')
@@ -221,6 +222,7 @@ def buy_adpack(request,level):
 			adpack_database=bought_adpack()
 			adpack_database.user=request.user
 			adpack_database.expiration_date=expiration_date
+			adpack_database.buying_date=datetime.now()
 			adpack_database.total_quantity=quantity
 			adpack_database.bought_adpacks=adp
 			adpack_database.adpack_totalreturn=total_revenue
@@ -257,6 +259,7 @@ def revenue_history(request):
 		history.append({'pack':pack.bought_adpacks.title,'buying_date':pack.buying_date,'expiration_date':pack.expiration_date,'total_paid':paid_so_far,'total_quantity':pack.total_quantity})
 
 	page = request.GET.get('page', 1)
+	history.reverse()
 	paginator = Paginator(history, 10)
 
 	try:
@@ -282,7 +285,7 @@ def revenue_history(request):
  '''
 @login_required(login_url='/accounts/login/')
 def adpack_history(request):
-	sel_all_adpack = bought_adpack.objects.filter(user=request.user)
+	sel_all_adpack = bought_adpack.objects.filter(user=request.user).order_by('-buying_date')
 	if len(sel_all_adpack) == 0:
 		return render(request,'dashboard/adpack_history.html',{'message':'you dont have adpack history'})
 
@@ -428,10 +431,10 @@ def withdraw_request(request):
 		if amount<100 and method=='bank_accounts':
 			return JsonResponse({'message':'minimum withdraw for bank is 100$'})
 
-		if amount<20 and method=='agent_accounts':
+		if amount<10 and method=='agent_accounts':
 			return JsonResponse({'message':'minimum withdraw for agent transfer is 20$'})
 
-		if amount<20 and method=='pm_accounts':
+		if amount<50 and method=='pm_accounts':
 			return JsonResponse({'message':'minimum withdraw for perfectMoney is 20$'})
 
 		if check_password(password,request.user.password) != True:
@@ -480,11 +483,75 @@ def change_password(request):
 
 		
 
+@login_required(login_url='/accounts/login/')
+def withdraw_history(request):
+	all_withdraw_data=withdraw_requests.objects.filter(user=request.user).order_by('-date')
+
+	if len(all_withdraw_data) == 0:
+		return render(request,'dashboard/withdraw-history.html',{'message':'you dont have any withdraw request'})
+
+	withdraw_data=[]
+
+	for req in all_withdraw_data:
+		date=req.date
+		amount=req.amount
+		method=req.method
+		payment_done=req.payment_done
+		payment_error=req.payment_error
+		withdraw_data.append({'date':date,'amount':amount,'method':method,'payment_done':payment_done,'payment_error':payment_error})
 
 
+	page = request.GET.get('page', 1)
+	paginator = Paginator(withdraw_data, 10)
+
+	try:
+		hist=paginator.page(page)
+	except PageNotAnInteger:
+		hist=paginator.page(1)
+	except EmptyPage:
+		hist=paginator.page(paginator.num_pages)
+
+
+
+	return render(request,'dashboard/withdraw-history.html',{'hist':hist})
+
+
+
+
+
+@login_required(login_url='/accounts/login/')
+def deposits_history(request):
+	all_deposit_data=deposit_history.objects.filter(user=request.user).order_by('-date')
+
+	if len(all_deposit_data) == 0:
+		return render(request,'dashboard/deposit-history.html',{'message':'you dont have any deposit record'})
+
+	deposit_data=[]
+
+	for req in all_deposit_data:
+		date=req.date
+		amount=req.amount
+		method=req.method
+		
+		deposit_data.append({'date':date,'amount':amount,'method':method})
+
+
+	page = request.GET.get('page', 1)
+	paginator = Paginator(deposit_data, 10)
+
+	try:
+		hist=paginator.page(page)
+	except PageNotAnInteger:
+		hist=paginator.page(1)
+	except EmptyPage:
+		hist=paginator.page(paginator.num_pages)
+
+
+
+	return render(request,'dashboard/deposit-history.html',{'hist':hist})
 	
 
-	
+
 
 
 
