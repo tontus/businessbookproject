@@ -428,14 +428,14 @@ def withdraw_request(request):
 		if amount>check:
 			return JsonResponse({'message':'not enough funds to withdraw'})
 
-		if amount<100 and method=='bank_accounts':
+		if amount<100 and str_method=='Bank transfer':
 			return JsonResponse({'message':'minimum withdraw for bank is 100$'})
 
-		if amount<10 and method=='agent_accounts':
-			return JsonResponse({'message':'minimum withdraw for agent transfer is 20$'})
+		if amount<10 and str_method=='agent transfer':
+			return JsonResponse({'message':'minimum withdraw for agent transfer is 10$'})
 
-		if amount<50 and method=='pm_accounts':
-			return JsonResponse({'message':'minimum withdraw for perfectMoney is 20$'})
+		if amount<50 and str_method=='perfectMoney':
+			return JsonResponse({'message':'minimum withdraw for perfectMoney is 50$'})
 
 		if check_password(password,request.user.password) != True:
 			return JsonResponse({'message':'password did not match'})
