@@ -1,4 +1,6 @@
-migrations/*
-!migrations/__init__.py
+accounts/migrations/*
+!accounts/migrations/__init__.py
+dashboard/migrations/*
+!dashboard/migrations/__init__.py
 media/
 
