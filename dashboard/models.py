@@ -129,7 +129,7 @@ class withdraw_requests(models.Model):
 class deposit_history(models.Model):
 	date=models.DateField(default=timezone.now)
 	user=models.ForeignKey(User,on_delete=models.CASCADE)
-	method=models.CharField(max_length=40,default='parfectmoney')
+	method=models.CharField(max_length=40,default='PerfectMoney')
 	amount=models.FloatField()
 	
 

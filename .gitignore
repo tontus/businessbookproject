@@ -1,4 +1,4 @@
-accounts/migrations/
-dashboard/migrations/
+migrations/*
+!migrations/__init__.py
 media/
 
