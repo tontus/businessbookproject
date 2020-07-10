@@ -130,6 +130,8 @@ def balance_transfer(request):
 			to.current_balance=round(float(to.current_balance + amount),2)
 			to.save()
 
+			send_money_history.objects.create(sent_from=request.user,sent_to=toemail,sent_amount=amount)
+
 			messages.success(request,'balance transfer successful')
 			return redirect('send_money')
 
@@ -556,7 +558,80 @@ def deposits_history(request):
 
 
 
+@login_required(login_url='/accounts/login/')
+def send_Money_history(request):
+	all_sendmoney_data=send_money_history.objects.filter(sent_from=request.user).order_by('-date')
 
+	if len(all_sendmoney_data) == 0:
+		return render(request,'dashboard/sendmoney_history.html',{'message':'you dont have any send record'})
+
+	sendmoney_data=[]
+
+	for req in all_sendmoney_data:
+		date=req.date
+		amount=req.sent_amount
+		reciever=req.sent_to
+		
+		sendmoney_data.append({'date':date,'amount':amount,'reciever':reciever})
+
+
+	page = request.GET.get('page', 1)
+	paginator = Paginator(sendmoney_data, 10)
+
+	try:
+		hist=paginator.page(page)
+	except PageNotAnInteger:
+		hist=paginator.page(1)
+	except EmptyPage:
+		hist=paginator.page(paginator.num_pages)
+
+
+
+
+	return render(request,'dashboard/sendmoney_history.html',{'history':hist})
+
+
+
+
+
+
+
+
+
+
+
+
+@login_required(login_url='/accounts/login/')
+def receivedmoney_history(request):
+	all_receivedmoney_data=send_money_history.objects.filter(sent_to=request.user.email).order_by('-date')
+
+	if len(all_receivedmoney_data) == 0:
+		return render(request,'dashboard/received_money_history.html',{'message':'you dont have any received record'})
+
+	receivedmoney_data=[]
+
+	for req in all_receivedmoney_data:
+		date=req.date
+		amount=req.sent_amount
+		sender=req.sent_from.email
+		
+		receivedmoney_data.append({'date':date,'amount':amount,'sender':sender})
+
+
+	page = request.GET.get('page', 1)
+	paginator = Paginator(receivedmoney_data, 10)
+
+	try:
+		hist=paginator.page(page)
+	except PageNotAnInteger:
+		hist=paginator.page(1)
+	except EmptyPage:
+		hist=paginator.page(paginator.num_pages)
+	
+
+
+
+	return render(request,'dashboard/received_money_history.html',{'history':hist})
 
 
 

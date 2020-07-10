@@ -141,6 +141,16 @@ class deposit_history(models.Model):
 		verbose_name_plural='user deposit history'
 
 
+class send_money_history(models.Model):
+	date=models.DateField(default=timezone.now)
+	sent_from = models.ForeignKey(User,on_delete=models.CASCADE)
+	sent_to = models.EmailField(blank=False,null=False)
+	sent_amount = models.FloatField(blank=False,null=False)
+
+	def __str__(self):
+		return str(self.sent_from)
+
+
 
 
 

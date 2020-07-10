@@ -27,7 +27,9 @@ urlpatterns = [
 	path('withdraw_request/',views.withdraw_request,name='withdraw_request'),
 	path('change_password/',views.change_password,name='change_password'),
 	path('withdraw_history/',views.withdraw_history,name='withdraw_history'),
-	path('deposits_history/',views.deposits_history,name='deposits_history')
+	path('deposits_history/',views.deposits_history,name='deposits_history'),
+	path('sendmoney_history/',views.send_Money_history,name='sendmoney_history'),
+	path('receivedmoney_history/',views.receivedmoney_history,name='receivedmoney_history')
 
 	]
     

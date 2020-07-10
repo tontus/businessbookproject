@@ -100,41 +100,117 @@
 
     <!-- Footer -->
     <footer id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg d-lg-flex align-items-center">
-                    <ul class="nav justify-content-center justify-content-lg-start text-3">
-                        <li class="nav-item"> <a class="nav-link active" href="{% url 'about-us' %}">About Us</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="{% url 'support' %}">Support</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="{% url 'safety' %}">Safety and security</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="{% url 'agent' %}">Agent</a></li>
-                        
+        <!-- Content -->
+
+    <div class="nf">
+        <div class="nfc">
+            <div class="row" style="margin: 0;">
+                <div class="col"><img class="fl" src="{% static 'img/login_page_logo.png' %}" width=""></div>
+                <div class="col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="{% url 'index' %}">> Home</a></li>
+                        <li><a href="{% url 'agent' %}">> Agent</a></li>
+                        <li><a href="{% url 'about-us' %}">> About Us</a></li>
+                        <li><a href="{% url 'safety' %}">> Safety & Security</a></li>
                     </ul>
                 </div>
-                <div class="col-lg d-lg-flex justify-content-lg-end mt-3 mt-lg-0">
-                    <ul class="social-icons justify-content-center">
-                        <li class="social-icons-facebook"><a data-toggle="tooltip" href="https://www.facebook.com/businessbookbd" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                        <!--<li class="social-icons-twitter"><a data-toggle="tooltip" href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>-->
-                        <li class="social-icons-google"><a data-toggle="tooltip" href=" https://www.facebook.com/businessbookbd" target="_blank" title="Facebook Group"><i class="fab fa-google"></i></a></li>
-                        <li class="social-icons-youtube"><a data-toggle="tooltip" href=" https://www.youtube.com/channel/UCcGYTpPjEiTKqwgCv7U4cDg" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a></li>
+                <div class="col">
+                    <h3>Newsletter</h3>
+                    <ul>
+                        <li>Subscribe to our newsletter for get update</li>
+                        <li><input type="email" placeholder="Your Email"></li>
+                        <li><button class="nfb" type="submit">Submit</button></li>
                     </ul>
                 </div>
-            </div>
-            <div class="footer-copyright pt-3 pt-lg-2 mt-2">
-                <div class="row">
-                    <div class="col-lg">
-                        <p class="text-center text-lg-left mb-2 mb-lg-0">Copyright &copy; 2020 <a href="{% url 'index' %}">Businessbook</a>. All Rights Reserved.</p>
-                    </div>
-                    <div class="col-lg d-lg-flex align-items-center justify-content-lg-end">
-                        <ul class="nav justify-content-center">
-                            <li class="nav-item"> <a class="nav-link active" href="#">Security</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="#">Terms</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="#">Privacy</a></li>
-                        </ul>
-                    </div>
+                <div class="col">
+                    <h3>Contact info</h3>
+                    <ul class="lc">
+                        <li><img src="{% static 'newimage/i5.png' %}"><span>Dhaka, Bangladesh</span></li>
+                        <li><img src="{% static 'newimage/i6.png' %}"><span>support@businessbook.ltd</span></li>
+                        <li><img src="{% static 'newimage/i7.png' %}"><span>0123456789</span></li>
+                    </ul>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="nft">
+        © Copyrights 2020 Businessbook
+    </div>
+    <style>
+        .nf {
+            background: #3a1e02;
+            padding: 60px;
+        }
+
+        .nf h3 {
+            color: white;
+            border-bottom: 4px solid #d66c0b;
+            padding-bottom: 10px;
+        }
+
+        .nf a {
+            color: white;
+        }
+
+        .nf ul {
+            list-style-type: none;
+            padding: 0;
+            padding-top: 20px;
+            line-height: 2;
+            color: white;
+        }
+
+        .nf a:hover {
+            color: #d66c0b !important
+        }
+
+        .nf input {
+            border-radius: 5px;
+            border: 0px;
+            padding: 5px 10px;
+        }
+
+        .nf span {
+            padding-left: 10px;
+        }
+
+        .nfb {
+            background: #d66c0b;
+            color: #fff;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 5px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .lc li {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .nft {
+            background: #532a02;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .fl {
+            width: 100%;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .fl {
+                width: 200px !important;
+            }
+        }
+
+    </style>
     </footer>
     <!-- Footer end -->
 

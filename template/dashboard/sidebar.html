@@ -76,7 +76,7 @@
                             <i class="feather icon-menu"></i>
                         </a>
                         <a href="{% url 'dashboard' %}">
-                            <img class="img-fluid" src="{% static 'dashboard-static/assets/images/logo.png' %}" alt="Theme-Logo">
+                            <img class="img-fluid" style="margin-top:3px" height="60px" width="170px" src="{% static 'img/login_page_logo.png' %}" alt="Theme-Logo">
                         </a>
                         <a class="mobile-options">
                             <i class="feather icon-more-horizontal"></i>
@@ -215,16 +215,7 @@
                                             </a>
                                         </li>
 
-                                          <li class="">
-                                            <a href="{% url 'deposits_history' %}"> 
-                                                <span class="pcoded-mtext">Deposit history</span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="{% url 'withdraw_history' %}"> 
-                                                <span class="pcoded-mtext">Withdraw history</span>
-                                            </a>
-                                        </li>
+                                          
                                         <!--<li class="">
                                             <a href="#">
                                                 <span class="pcoded-mtext">E-Voucher</span>
@@ -235,6 +226,35 @@
                                                 <span class="pcoded-mtext">Gift Card</span>
                                             </a>
                                         </li> -->
+                                    </ul>
+                                </li>
+                                <!-- transection history menu starts here -->
+                                <li class="pcoded-hasmenu" dropdown-icon="style1" subitem-icon="style1">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="feather icon-credit-card"></i></span>
+                                        <span class="pcoded-mtext">Transaction History</span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class="">
+                                            <a href="{% url 'deposits_history' %}"> 
+                                                <span class="pcoded-mtext">Deposit history</span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="{% url 'withdraw_history' %}"> 
+                                                <span class="pcoded-mtext">Withdraw history</span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="{% url 'sendmoney_history' %}">
+                                                <span class="pcoded-mtext">Send money history</span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="{% url 'receivedmoney_history' %}">
+                                                <span class="pcoded-mtext">Recieved money history</span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -264,6 +284,24 @@
                                                 <span class="pcoded-mtext">Refer Earn</span>
                                             </a>
                                         </li> -->
+                                    </ul>
+                                </li>
+                                <li class="pcoded-hasmenu pcoded-trigger" dropdown-icon="style1" subitem-icon="style1">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="feather icon-credit-card"></i></span>
+                                        <span class="pcoded-mtext">Transaction History</span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class="">
+                                            <a href="#">
+                                                <span class="pcoded-mtext">Withdraaw History</span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#">
+                                                <span class="pcoded-mtext">Blance Transfer</span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
