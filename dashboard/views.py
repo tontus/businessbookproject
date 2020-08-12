@@ -235,6 +235,11 @@ def buy_adpack(request,level):
 			adpack_database.save()
 
 			rupdate=refer.objects.get(user=request.user)
+			adding_bal=balance.objects.get(user_id=affiliate_id)
+			adding_bal.current_balance=round((float(adding_bal.current_balance)+affiliate_commission),2)
+			adding_bal.save()
+
+
 			rupdate.refer_earn=round(float(rupdate.refer_earn+affiliate_commission),2)
 			rupdate.save()
 

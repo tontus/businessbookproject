@@ -34,7 +34,7 @@
                                         <div class="input-group" style="margin: 0;">
 
                                             <div style="width: inherit;text-align: center;margin: 0;" class="alert alert-primary border-primary">
-                                                <lnk id="lnk">http://127.0.0.1:8000/accounts/signup/?ref={{request.user.id}}</lnk>
+                                                <lnk id="lnk">https://{{ request.META.HTTP_HOST }}/accounts/signup/?ref={{request.user.id}}</lnk>
                                                 <button style="padding: 2px 0 2px 5px;margin-left: 10px;" onclick="CopyToClipboard('lnk')" type="submit" class="btn btn-primary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to copy">
                                                     <i class="feather icon-layers"></i></button>
                                             </div>
