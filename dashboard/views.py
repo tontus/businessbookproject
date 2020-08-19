@@ -322,6 +322,9 @@ def payment_info(request):
 	pm_info=''
 	bank_info=''
 	agent_info=''
+	bkash_info=''
+	rocket_info=''
+	nagad_info=''
 	try:
 		pm_info=pm_accounts.objects.get(user=request.user)
 	except:
@@ -334,8 +337,22 @@ def payment_info(request):
 		agent_info=agent_accounts.objects.get(user=request.user)
 	except :
 		added=False
+	try:
+		bkash_info=bkash_accounts.objects.get(user=request.user)
+	except:
+		added=False
+	try:
+		rocket_info=rocket_accounts.objects.get(user=request.user)
+	except:
+		added=False
+	try:
+		nagad_info=nagad_accounts.objects.get(user=request.user)
+	except:
+		added=False
 
-	return render(request,'dashboard/payment_info.html',{'pm_info':pm_info,'bank_info':bank_info,'agent_info':agent_info})
+
+
+	return render(request,'dashboard/payment_info.html',{'pm_info':pm_info,'bank_info':bank_info,'agent_info':agent_info,'bkash_info':bkash_info,'rocket_info':rocket_info,'nagad_info':nagad_info})
 
 @login_required(login_url='/accounts/login/')
 def pm_add(request):
@@ -403,6 +420,58 @@ def bank_info_add(request):
 
 
 
+@login_required(login_url='/accounts/login/')
+def bkash_add(request):
+	if request.method == 'POST':
+		account =  request.POST['bkash_account']
+
+		try:
+			check=bkash_accounts.objects.get(user=request.user)
+			check.bkash_number=account
+			check.save()
+			messages.info(request,'payment information added successfully')
+			return redirect('payment_info')
+
+		except bkash_accounts.DoesNotExist:
+			bkash_accounts.objects.create(user=request.user,bkash_number=account)
+			messages.info(request,'payment information added successfully')
+			return redirect('payment_info')
+
+@login_required(login_url='/accounts/login/')
+def rocket_add(request):
+	if request.method == 'POST':
+		account =  request.POST['rocket_account']
+
+		try:
+			check=rocket_accounts.objects.get(user=request.user)
+			check.rocket_number=account
+			check.save()
+			messages.info(request,'payment information added successfully')
+			return redirect('payment_info')
+
+		except rocket_accounts.DoesNotExist:
+			rocket_accounts.objects.create(user=request.user,rocket_number=account)
+			messages.info(request,'payment information added successfully')
+			return redirect('payment_info')
+
+@login_required(login_url='/accounts/login/')
+def nagad_add(request):
+	if request.method == 'POST':
+		account =  request.POST['nagad_account']
+
+		try:
+			check=nagad_accounts.objects.get(user=request.user)
+			check.nagad_number=account
+			check.save()
+			messages.info(request,'payment information added successfully')
+			return redirect('payment_info')
+
+		except nagad_accounts.DoesNotExist:
+			nagad_accounts.objects.create(user=request.user,nagad_number=account)
+			messages.info(request,'payment information added successfully')
+			return redirect('payment_info')
+
+
 
 @login_required(login_url='/accounts/login/')
 def withdraw(request):
@@ -428,6 +497,15 @@ def withdraw_request(request):
 		elif via=='at':
 			method=agent_accounts
 			str_method='agent transfer'
+		elif via=='bkash':
+			method=bkash_accounts
+			str_method='bkash transfer'
+		elif via=='rocket':
+			method=rocket_accounts
+			str_method='rocket transfer'
+		elif via=='nagad':
+			method=nagad_accounts
+			str_method='nagad transfer'
 		else:
 			method=None
 
@@ -443,6 +521,9 @@ def withdraw_request(request):
 
 		if amount<50 and str_method=='perfectMoney':
 			return JsonResponse({'message':'minimum withdraw for perfectMoney is 50$'})
+		if amount<15 and (str_method=='bkash transfer' or str_method=='rocket transfer' or str_method=='nagad transfer'):
+			return JsonResponse({'message':'minimum withdraw for mobile bank is 15$'})
+
 
 		if check_password(password,request.user.password) != True:
 			return JsonResponse({'message':'password did not match'})

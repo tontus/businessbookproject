@@ -9,5 +9,8 @@ admin.site.register(withdraw_requests)
 admin.site.register(pm_accounts)
 admin.site.register(bank_accounts)
 admin.site.register(agent_accounts)
+admin.site.register(bkash_accounts)
+admin.site.register(rocket_accounts)
+admin.site.register(nagad_accounts)
 admin.site.register(deposit_history)
 

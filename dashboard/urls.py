@@ -29,7 +29,10 @@ urlpatterns = [
 	path('withdraw_history/',views.withdraw_history,name='withdraw_history'),
 	path('deposits_history/',views.deposits_history,name='deposits_history'),
 	path('sendmoney_history/',views.send_Money_history,name='sendmoney_history'),
-	path('receivedmoney_history/',views.receivedmoney_history,name='receivedmoney_history')
+	path('receivedmoney_history/',views.receivedmoney_history,name='receivedmoney_history'),
+	path('bkash_add/',views.bkash_add,name='bkash_add'),
+	path('rocket_add/',views.rocket_add,name='rocket_add'),
+	path('nagad_add/',views.nagad_add,name='nagad_add'),
 
 	]
     
