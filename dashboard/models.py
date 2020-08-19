@@ -152,8 +152,43 @@ class send_money_history(models.Model):
 
 
 
+class bkash_accounts(models.Model):
+	user=models.OneToOneField(User,on_delete=models.CASCADE)
+	bkash_number = models.CharField(max_length=25,blank=True,null=True)
+
+
+	def __str__(self):
+		return self.user.email
+
+	class Meta:
+		verbose_name='user bkash numbers'
+		verbose_name_plural='user bkash numbers'
 
 
 
+class rocket_accounts(models.Model):
+	user=models.OneToOneField(User,on_delete=models.CASCADE)
+	rocket_number = models.CharField(max_length=25,blank=True,null=True)
+
+
+	def __str__(self):
+		return self.user.email
+
+	class Meta:
+		verbose_name='user rocket numbers'
+		verbose_name_plural='user rocket numbers'
+
+
+class nagad_accounts(models.Model):
+	user=models.OneToOneField(User,on_delete=models.CASCADE)
+	nagad_number = models.CharField(max_length=25,blank=True,null=True)
+
+
+	def __str__(self):
+		return self.user.email
+
+	class Meta:
+		verbose_name='user nagad numbers'
+		verbose_name_plural='user nagad numbers'
 
 
