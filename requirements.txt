@@ -2,3 +2,6 @@ django-phonenumber-field
 phonenumbers
 django-countries
 requests
+django-crontab
+pillow
+django_email_verification

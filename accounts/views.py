@@ -18,8 +18,8 @@ def signup(request):
 		except:
 			referid = ''
 		form=user_account_form()
-		#return render(request,'accounts/signup.html',{'form':form,'referer':referid})
-		return HttpResponse('<h1>Signup and Login are currently closed. Businessbook verify is ongoing.We will get back shortly')
+		return render(request,'accounts/signup.html',{'form':form,'referer':referid})
+		#return HttpResponse('<h1>Signup and Login are currently closed. Businessbook verify is ongoing.We will get back shortly')
 
 	if request.method=='POST':
 		referer_id=0
@@ -97,9 +97,9 @@ def login(request):
 			
 			return redirect('dashboard')
 		else:
-			return HttpResponse('<h1>Signup and Login are currently closed. Businessbook verify is ongoing.We will get back shortly')
+			#return HttpResponse('<h1>Signup and Login are currently closed. Businessbook verify is ongoing.We will get back shortly')
 			
-			#return render(request,'accounts/login.html')
+			return render(request,'accounts/login.html')
 
 	if request.method=='POST':
 		email=request.POST['loginEmail']
