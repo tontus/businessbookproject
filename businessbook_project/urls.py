@@ -31,7 +31,8 @@ urlpatterns = [
     path('support/',TemplateView.as_view(template_name='support.html'),name='support'),
     path('safety/',TemplateView.as_view(template_name='safety.html'),name='safety'),
     path('agent/',TemplateView.as_view(template_name='agent.html'),name='agent'),
-    path('upcomming/',TemplateView.as_view(template_name='upcomming.html'),name='upcomming')
+    path('upcomming/',TemplateView.as_view(template_name='upcomming.html'),name='upcomming'),
+   
 ]
 
 

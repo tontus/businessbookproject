@@ -312,7 +312,7 @@ def adpack_history(request):
 
 class personal_info(generic.UpdateView):
 	model = User
-	fields=['first_name','last_name','mobile','address']
+	fields=['first_name','last_name','mobile','address','profile_picture','nid_front','nid_back']
 	template_name='dashboard/update-personal-info.html'
 	success_url=reverse_lazy('dashboard')
 	context_object_name='info'

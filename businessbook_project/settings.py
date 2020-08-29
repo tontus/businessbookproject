@@ -40,13 +40,17 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'dashboard.apps.DashboardConfig',
     'payments_information.apps.PaymentsInformationConfig',
+    
     #external apps area
     'phonenumber_field',
     'django_countries',
     'django_email_verification',
     'django_crontab',
+   
 
     #end of external apps area
+    #pip module installing area
+    
 ]
 
 MIDDLEWARE = [
