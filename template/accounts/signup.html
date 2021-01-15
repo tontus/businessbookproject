@@ -12,15 +12,15 @@
 
     <div id="content">
         <div class="login-signup-page mx-auto my-5">
-            <div class="nrt">
+            <!--<div class="nrt">
                 <p id="sln" class="nahidr" onclick="myFunction()">Personal</p>
                 <p id="sln2" onclick="myFunction2()">Business</p>
-            </div>
+            </div> -->
 
             <!--- Personal Account ---->
             
             <div id="nahid">
-                <h3 class="font-weight-400 text-center">Sign Up <small>(Personal)</small></h3>
+                <h3 class="font-weight-400 text-center">Sign Up <small></small></h3>
                 <p class="lead text-center">Your Sign Up information is safe with us.</p>
 
                
@@ -36,7 +36,7 @@
                     
                     <form id="signupForm" method="post" action="">
 
-                        <input type="hidden" name="referer_id" value="{{referer}}">
+                        <input type="hidden" name="referer_id" value="0">
                         <input type="hidden" name="agent_id" value="0">
                          {% csrf_token %}
                       

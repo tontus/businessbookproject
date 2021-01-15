@@ -96,7 +96,9 @@
                             <li class="user-profile header-notification">
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
+                                        {% if request.user.profile_picture.url != ''%}
                                         <img src="{{request.user.profile_picture.url}}" class="img-radius" alt="User-Profile-Image">
+                                        {% endif %}
                                         <span>{{request.user.first_name}}</span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>

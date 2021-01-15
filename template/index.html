@@ -14,7 +14,7 @@
             <div class="item">
                 <section class="hero-wrap section shadow-md">
                     <div class="hero-mask opacity-7 bg-dark"></div>
-                    <div class="hero-bg" style="background-image:url('https://cdn.csefest.com/img/bg/image-1.jpg');"></div>
+                    <div class="hero-bg" style="background-image:url('{% static 'img/image-1.jpg' %}');"></div>
 
                     <div class="hero-content py-2 py-lg-5">
                         <div class="container text-center">
@@ -28,7 +28,7 @@
             </div>
             <div class="item">
                 <section class="hero-wrap section shadow-md">
-                    <div class="hero-bg" style="background-image:url('https://cdn.csefest.com/img/bg/image-3.jpg');"></div>
+                    <div class="hero-bg" style="background-image:url('{% static 'img/image-3.jpg'%}');"></div>
                     <div class="hero-content py-2 py-lg-4">
                         <div class="container">
                             <div class="row">
@@ -109,7 +109,7 @@
                                             <h2 class="text-5 font-weight-400 mb-0">Freelancer</h2>
                                         </div>
                                         <div class="banner-mask"></div>
-                                        <img class="img-fluid" src="https://cdn.csefest.com/img/bg/anyone-freelancer.jpg" width="410" height="350" alt="banner">
+                                        <img class="img-fluid" src="{% static 'img/freelancer-min.jpg' %}" width="410" height="350" alt="banner">
                                     </a> </div>
                             </div>
                             <div class="col-12 col-sm-6 mb-4 text-center">
@@ -118,7 +118,7 @@
                                             <h2 class="text-5 font-weight-400 mb-0">Online Shopping</h2>
                                         </div>
                                         <div class="banner-mask"></div>
-                                        <img class="img-fluid" src="https://cdn.csefest.com/img/bg/anyone-online-shopping.jpg" width="410" height="350" alt="banner">
+                                        <img class="img-fluid" src="{% static 'img/online-shoping.jpg' %}" width="410" height="350" alt="banner">
                                     </a> </div>
                             </div>
                             <div class="col-12 col-sm-6 mb-4 mb-sm-0 text-center">
@@ -127,7 +127,7 @@
                                             <h2 class="text-5 font-weight-400 mb-0">Online Sellers</h2>
                                         </div>
                                         <div class="banner-mask"></div>
-                                        <img class="img-fluid" src="https://cdn.csefest.com/img/bg/anyone-online-sellers.jpg" width="410" height="350" alt="banner">
+                                        <img class="img-fluid" src="{% static 'img/online-seller-min.jpg' %}" width="410" height="350" alt="banner">
                                     </a> </div>
                             </div>
                             <div class="col-12 col-sm-6 text-center">
@@ -136,7 +136,7 @@
                                             <h2 class="text-5 font-weight-400 mb-0">Affiliate Marketing</h2>
                                         </div>
                                         <div class="banner-mask"></div>
-                                        <img class="img-fluid" src="https://cdn.csefest.com/img/bg/anyone-affiliate-marketing.jpg" width="410" height="350" alt="banner">
+                                        <img class="img-fluid" src="{% static 'img/online-marketing-min.jpg' %}" width="410" height="350" alt="banner">
                                     </a> </div>
                             </div>
                         </div>
@@ -445,7 +445,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="card bg-dark-3 shadow-sm border-0"> <img class="card-img opacity-8" src="https://cdn.csefest.com/img/bg//how-work.jpg" width="570" height="362" alt="banner">
+                        <div class="card bg-dark-3 shadow-sm border-0"> <img class="card-img opacity-8" src="{% static 'img/video-img.jpg' %}" width="570" height="362" alt="banner">
                             <div class="card-img-overlay p-0"> <a class="d-flex h-100 video-btn" href="#" data-src="https://www.youtube.com/embed/7e90gBu4pas" data-toggle="modal" data-target="#videoModal"> <span class="btn-video-play bg-white shadow-md rounded-circle m-auto"><i class="fas fa-play"></i></span> </a> </div>
                         </div>
                     </div>
@@ -517,7 +517,7 @@
         <!-- Customer Support -->
         <section class="hero-wrap section shadow-md">
             <div class="hero-mask opacity-9 bg-primary"></div>
-            <div class="hero-bg" style="background-image:url('https://cdn.csefest.com/images/bg/image-2.jpg');"></div>
+            <div class="hero-bg" style="background-image:url('{% static 'img/support-img.jpg' %}');"></div>
             <div class="hero-content py-5">
                 <div class="container text-center">
                     <h2 class="text-9 text-white">Awesome Customer Support</h2>
@@ -534,7 +534,7 @@
                 <div class="justify-content-center text-center">
                     <h2 class="text-9">Get the app</h2>
                     <p class="text-4 mb-4">Download our app for the fastest, most convenient way to send & get Payment.</p>
-                    <a class="d-inline-flex mx-3" href="{% url 'upcomming' %}"><img alt="" width="168" height="49" src="https://cdn.csefest.com/img/bg/app-store.png"></a> <a class="d-inline-flex mx-3" href="{% url 'upcomming' %}"><img alt="" width="166" height="49" src="https://cdn.csefest.com/img/bg/google-play-store.png"></a>
+                    <a class="d-inline-flex mx-3" href="{% url 'upcomming' %}"><img alt="" width="168" height="49" src="{% static 'img/app-store.png' %}"></a> <a class="d-inline-flex mx-3" href="{% url 'upcomming' %}"><img alt="" width="168" height="49" src="{% static 'img/playstore.png' %}"></a>
                 </div>
             </div>
         </section>

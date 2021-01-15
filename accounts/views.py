@@ -25,7 +25,6 @@ def signup(request):
 		referer_id=0
 		is_agent=False
 		agent_id=0
-		print('your referer is ',request.POST.get('referer_id'))
 		
 		
 		form=user_account_form(request.POST)
@@ -42,7 +41,7 @@ def signup(request):
 
 
 			else:
-				referer_id=request.POST['referer_id']
+				referer_id=0
 			first_name	=	form.cleaned_data['first_name']
 			last_name	=	form.cleaned_data['last_name']
 			email 		=	form.cleaned_data['email']
@@ -72,10 +71,10 @@ def signup(request):
 				User.objects.get(email=email)
 				return render(request,'accounts/signup.html',{'form':form,'userexist':'true'})
 			except User.DoesNotExist:
-				create_user=User.objects.create_user(password=password,first_name=first_name,last_name=last_name,email=email,mobile=mobile,address=address,country=country,company=company,is_agent=is_agent,agent_id=agent_id)
+				create_user=User.objects.create_user(password=password,first_name=first_name,last_name=last_name,email=email,mobile=mobile,address=address,country=country,company=company,is_agent=is_agent,agent_id=agent_id,is_active=True)
 				balance.objects.create(user=create_user)
 				refer.objects.create(user=create_user,referer=referer_id)
-				sendConfirm(create_user)
+				#sendConfirm(create_user)
 				return render(request,'accounts/activation.html')
 
 
